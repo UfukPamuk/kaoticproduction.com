@@ -119,11 +119,11 @@ def images():
     for lang in ("en", "tr"):
         save_set(Image.open(os.path.join(STORE, "trailer", f"poster-steam-{lang}.png")), f"trailer-poster-{lang}", (960, 1920))
     # hero clip poster = first frame of the loop
-    clip = os.path.join(ROOT, "assets", "video", "reverdo-hero-720.mp4")
+    clip = os.path.join(ROOT, "assets", "video", "reverdo-hero-1080.mp4")
     p = os.path.join(CACHE, "hero-first.png")
     subprocess.run([FFMPEG, "-hide_banner", "-loglevel", "error", "-y", "-i", clip,
                     "-frames:v", "1", p], check=True)
-    save_set(Image.open(p), "hero-poster", (640, 1280), q=(45, 70, 72))
+    save_set(Image.open(p), "hero-poster", (640, 1280, 1920), q=(50, 76, 80))
     # Reverdo share image 1200x630: key art + wordmark
     ka = Image.open(os.path.join(STORE, "steam", "library_hero_3840x1240.png")).convert("RGB")
     scale = 630 / ka.height
@@ -149,12 +149,13 @@ def presskit():
     lg.crop(lg.getbbox()).save(os.path.join(files, "reverdo-logo-wordmark.png"), optimize=True)
     shutil.copy(os.path.join(GAME, "native3d", "assets", "reverdo-logo.png"), os.path.join(files, "reverdo-logo-badge.png"))
     shutil.copy(os.path.join(STORE, "play", "app_icon_512x512.png"), os.path.join(files, "reverdo-icon-512.png"))
-    for n in ("kaotic-wordmark-ink.svg", "kaotic-wordmark-cream.svg", "kaotic-mark.svg"):
-        shutil.copy(os.path.join(ROOT, "assets", "brand", n), os.path.join(files, n))
-    for n in ("kaotic-wordmark-ink.png", "kaotic-wordmark-cream.png", "kaotic-mark-512.png"):
-        p = os.path.join(ROOT, "assets", "brand", n)
-        if os.path.exists(p):
-            shutil.copy(p, os.path.join(files, n))
+    for n in os.listdir(files):
+        if n.startswith("kaotic-"):
+            os.remove(os.path.join(files, n))
+    brand = os.path.join(ROOT, "assets", "brand")
+    for n in sorted(os.listdir(brand)):
+        if n.startswith("kaotic-") and (n.endswith(".svg") or n.endswith("-2048.png") or n.endswith("-512.png")):
+            shutil.copy(os.path.join(brand, n), os.path.join(files, n))
     # key art as high quality JPEG (the PNG is 10+ MB)
     Image.open(os.path.join(STORE, "steam", "library_hero_3840x1240.png")).convert("RGB").save(
         os.path.join(files, "reverdo-keyart-3840x1240.jpg"), quality=90, optimize=True)

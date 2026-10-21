@@ -221,8 +221,9 @@ def head(lang, key, title, desc, og_image, theme, extra_head="", jsonld=None, no
     else:
         icons = ('<link rel="icon" href="/favicon.svg" type="image/svg+xml">'
                  '<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">'
-                 '<link rel="apple-touch-icon" href="/apple-touch-icon.png">')
-        color = "#1a1530"
+                 '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+                 '<link rel="manifest" href="/site.webmanifest">')
+        color = "#0d1016"
     ld = ""
     if jsonld:
         ld = '<script type="application/ld+json">' + json.dumps(jsonld, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + "</script>"
@@ -282,8 +283,7 @@ def header(lang, key, theme, overlay=False):
     t = T(lang)
     p = PAGES
     if theme == "studio":
-        brand = (f'<a class="brand" href="{p["home"][lang]}"><img src="/assets/brand/kaotic-mark.svg" width="38" height="38" alt="">'
-                 f'<span lang="en">Kaotic<span class="sub">Production</span></span></a>')
+        brand = (f'<a class="brand brand-k" href="{p["home"][lang]}"><img src="/assets/brand/kaotic-logo-dark-bg.svg" width="150" height="53" alt="Kaotic Production"></a>')
         h = p["home"][lang]
         links = [(h + "#games", t("Games", "Oyunlar")), (h + "#about", t("About", "Hakkımızda")),
                  (h + "#contact", t("Contact", "İletişim")), (p["presskit"][lang], t("Press", "Basın"))]
@@ -308,15 +308,20 @@ def header(lang, key, theme, overlay=False):
 """
 
 
-def footer(lang, key):
+def footer(lang, key, theme="game"):
     t = T(lang)
+    if theme == "studio":
+        flogo = '<img class="logo" src="/assets/brand/kaotic-logo-dark-bg.svg" width="240" height="85" alt="Kaotic Production">'
+    else:
+        flogo = ('<picture><source srcset="/assets/brand/kaotic-logo-dark-bg.svg" media="(prefers-color-scheme: dark)">'
+                 '<img class="logo" src="/assets/brand/kaotic-logo-light-bg.svg" width="240" height="85" alt="Kaotic Production"></picture>')
     p = PAGES
     other = "tr" if lang == "en" else "en"
     langs = (f'<li><a href="{p[key]["en"] if key else "/"}" hreflang="en" lang="en">English</a></li>'
              f'<li><a href="{p[key]["tr"] if key else "/tr/"}" hreflang="tr" lang="tr">Türkçe</a></li>')
     return f"""<footer class="site-footer"><div class="wrap">
 <div class="cols">
-<div><picture><source srcset="/assets/brand/kaotic-wordmark-cream.svg" media="(prefers-color-scheme: dark)"><img class="logo" src="/assets/brand/kaotic-wordmark-ink.svg" width="180" height="92" alt="Kaotic Production"></picture>
+<div>{flogo}
 <p>{t("An independent game studio from Istanbul.", "İstanbul'dan bağımsız bir oyun stüdyosu.")}<br><a href="{mail()}">{C.CONTACT_EMAIL}</a></p></div>
 <div><h3>Reverdo</h3><ul>
 <li><a href="{p["reverdo"][lang]}">{t("Game page", "Oyun sayfası")}</a></li>
@@ -337,13 +342,13 @@ def footer(lang, key):
 def page(lang, key, theme, title, desc, og, body, overlay=False, jsonld=None, extra_body="", noindex=False):
     return (head(lang, key, title, desc, og, theme, jsonld=jsonld, noindex=noindex)
             + f'<body class="{theme}">\n' + header(lang, key, theme, overlay)
-            + f'<main id="main">\n{body}\n</main>\n' + footer(lang, key) + extra_body
+            + f'<main id="main">\n{body}\n</main>\n' + footer(lang, key, theme) + extra_body
             + f'<script src="/assets/js/site.js?v={VERSION}" defer></script>\n</body>\n</html>\n')
 
 
 ORG = {
     "@type": "Organization", "@id": C.SITE_URL + "/#org", "name": "Kaotic Production",
-    "url": C.SITE_URL + "/", "logo": C.SITE_URL + "/assets/brand/kaotic-mark-512.png",
+    "url": C.SITE_URL + "/", "logo": C.SITE_URL + "/assets/brand/kaotic-emblem-512.png",
     "email": C.PRESS_EMAIL, "contactPoint": [{"@type": "ContactPoint", "contactType": "customer support", "email": C.CONTACT_EMAIL}, {"@type": "ContactPoint", "contactType": "press", "email": C.PRESS_EMAIL}], "founder": {"@type": "Person", "name": "Ufuk Pamuk"},
     "address": {"@type": "PostalAddress", "addressLocality": "Istanbul", "addressCountry": "TR"},
 }
@@ -354,30 +359,33 @@ def home(lang):
     t = T(lang)
     rel = RELEASE[lang]
     body = f"""
-<section class="s-hero">
-{SPARK.format(c="a")}{SPARK.format(c="b")}
-<div class="wrap grid">
-<div>
+<section class="k-hero" aria-labelledby="hero-h">
+<div class="k-media">
+<picture>
+<source media="(max-width: 719px)" type="image/avif" srcset="/assets/img/studio-emblem-480.avif 480w, /assets/img/studio-emblem-800.avif 800w, /assets/img/studio-emblem-980.avif 980w" sizes="100vw">
+<source media="(max-width: 719px)" type="image/webp" srcset="/assets/img/studio-emblem-480.webp 480w, /assets/img/studio-emblem-800.webp 800w, /assets/img/studio-emblem-980.webp 980w" sizes="100vw">
+<source media="(max-width: 719px)" srcset="/assets/img/studio-emblem-480.jpg 480w, /assets/img/studio-emblem-800.jpg 800w, /assets/img/studio-emblem-980.jpg 980w" sizes="100vw">
+<source type="image/avif" srcset="/assets/img/studio-cover-960.avif 960w, /assets/img/studio-cover-1440.avif 1440w, /assets/img/studio-cover-2000.avif 2000w" sizes="100vw">
+<source type="image/webp" srcset="/assets/img/studio-cover-960.webp 960w, /assets/img/studio-cover-1440.webp 1440w, /assets/img/studio-cover-2000.webp 2000w" sizes="100vw">
+<img src="/assets/img/studio-cover-1440.jpg" srcset="/assets/img/studio-cover-960.jpg 960w, /assets/img/studio-cover-1440.jpg 1440w, /assets/img/studio-cover-2000.jpg 2000w" sizes="100vw" width="2000" height="1116" alt="{t("Kaotic Production emblem: a steel K in front of a golden starburst, and the words Kaotic Production", "Kaotic Production amblemi: altın bir patlamanın önünde çelik bir K ve Kaotic Production yazısı")}" fetchpriority="high">
+</picture>
+<div class="k-glow" aria-hidden="true"></div>
+<div class="k-sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+<div class="wrap k-copy">
 <p class="eyebrow">{t("Independent game studio · Istanbul", "Bağımsız oyun stüdyosu · İstanbul")}</p>
-<h1>{t('Fun, colourful, <span class="hl">meaningful</span> games.', 'Eğlenceli, renkli, <span class="hl">anlamlı</span> oyunlar.')}</h1>
+<h1 id="hero-h"><span class="visually-hidden">Kaotic Production: </span>{t('Fun, colourful, <span class="hl">meaningful</span> games.', 'Eğlenceli, renkli, <span class="hl">anlamlı</span> oyunlar.')}</h1>
 <p class="lead">{t("Kaotic Production is a small independent studio from Istanbul. We make cheerful games for all ages, with a little message inside. Our first game, Reverdo, is on its way.",
                   "Kaotic Production, İstanbul'dan küçük ve bağımsız bir oyun stüdyosu. Her yaştan oyuncu için, içinde küçük bir mesaj taşıyan neşeli oyunlar yapıyoruz. İlk oyunumuz Reverdo yolda.")}</p>
 <div class="ctas"><a class="btn" href="{PAGES["reverdo"][lang]}">{t("Meet Reverdo", "Reverdo'yu tanı")}</a><a class="btn ghost" href="#contact">{t("Get in touch", "Bize yazın")}</a></div>
 </div>
-<div class="art">
-<div class="frame">{pic("still-sultanahmet-park", STILL_ALT["sultanahmet-park"][lang == "tr"], "(min-width: 900px) 520px, 92vw", lazy=False, high=True)}
-<span class="tag">{icon("leaf")} Reverdo &middot; {t("Sultanahmet, Istanbul", "Sultanahmet, İstanbul")}</span></div>
-<img class="sticker" src="/assets/img/reverdo-icon-192.png" width="112" height="112" alt="">
-</div>
-</div>
-{SPARK.format(c="c")}
 </section>
 
 <section class="featured" id="games" aria-labelledby="games-h">
 <div class="wrap">
 <p class="eyebrow">{t("Our first game", "İlk oyunumuz")}</p>
 <article class="feature-card">
-<div class="bg">{pic("keyart", "", "(min-width: 1240px) 1180px, 100vw")}</div>
+<div class="bg">{pic("keyart", "", "(min-width: 1500px) 1440px, 100vw")}</div>
 <div class="body">
 <h2 id="games-h" class="visually-hidden">Reverdo</h2>
 {pic("reverdo-wordmark", "Reverdo", "(min-width: 900px) 420px, 82vw", cls="logo")}
@@ -387,12 +395,15 @@ def home(lang):
 <div class="actions"><a class="btn" href="{PAGES["reverdo"][lang]}">{t("Explore the game", "Oyunu keşfet")}</a><a class="btn ghost" href="{PAGES["presskit"][lang]}">{t("Press kit", "Basın kiti")}</a></div>
 </div>
 </article>
-<div class="strip">
-{pic("shot-10-eiffel-tower", SHOT_ALT["10-eiffel-tower"][lang == "tr"], "(min-width: 1240px) 380px, 33vw", maxw=1280)}
-{pic("still-swans", STILL_ALT["swans"][lang == "tr"], "(min-width: 1240px) 380px, 33vw", maxw=1280)}
-{pic("shot-07-giza", SHOT_ALT["07-giza"][lang == "tr"], "(min-width: 1240px) 380px, 33vw", maxw=1280)}
 </div>
-</div>
+<ul class="showcase" aria-label="{t("Reverdo screenshots", "Reverdo ekran görüntüleri")}">
+<li>{pic("still-sultanahmet-park", STILL_ALT["sultanahmet-park"][lang == "tr"], "(min-width: 1200px) 17vw, 70vw", maxw=1280)}</li>
+<li>{pic("shot-10-eiffel-tower", SHOT_ALT["10-eiffel-tower"][lang == "tr"], "(min-width: 1200px) 17vw, 70vw", maxw=1280)}</li>
+<li>{pic("still-swans", STILL_ALT["swans"][lang == "tr"], "(min-width: 1200px) 17vw, 70vw", maxw=1280)}</li>
+<li>{pic("shot-07-giza", SHOT_ALT["07-giza"][lang == "tr"], "(min-width: 1200px) 17vw, 70vw", maxw=1280)}</li>
+<li>{pic("still-concert", STILL_ALT["concert"][lang == "tr"], "(min-width: 1200px) 17vw, 70vw", maxw=1280)}</li>
+<li>{pic("shot-01-before-after-coast", SHOT_ALT["01-before-after-coast"][lang == "tr"], "(min-width: 1200px) 17vw, 70vw", maxw=1280)}</li>
+</ul>
 </section>
 
 <section class="about" id="about" aria-labelledby="about-h">
@@ -532,7 +543,7 @@ def reverdo(lang):
 <section class="g-hero" aria-labelledby="hero-h">
 <div class="media">
 {pic("hero-poster", "", "100vw", lazy=False, high=True)}
-<video data-hero muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-large="/assets/video/reverdo-hero-720" data-small="/assets/video/reverdo-hero-360" poster="/assets/img/hero-poster-1280.jpg"></video>
+<video data-hero muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-large="/assets/video/reverdo-hero-1080" data-small="/assets/video/reverdo-hero-720" poster="/assets/img/hero-poster-1920.jpg"></video>
 </div>
 <div class="wrap inner">
 {pic("reverdo-wordmark", "Reverdo", "(min-width: 900px) 560px, 92vw", cls="logo", lazy=False)}
@@ -784,9 +795,12 @@ def presskit(lang):
         ("reverdo-logo-wordmark.png", "/assets/img/reverdo-wordmark-400.webp", t("Reverdo logo (transparent PNG)", "Reverdo logosu (saydam PNG)"), ""),
         ("reverdo-logo-badge.png", "/assets/img/reverdo-badge-256.webp", t("Reverdo badge (PNG, 1024 px)", "Reverdo rozeti (PNG, 1024 px)"), ""),
         ("reverdo-icon-512.png", "/assets/img/reverdo-icon-192.webp", t("App icon (PNG, 512 px)", "Uygulama simgesi (PNG, 512 px)"), ""),
-        ("kaotic-wordmark-ink.svg", "/assets/brand/kaotic-wordmark-ink.svg", t("Kaotic Production logo (SVG, dark)", "Kaotic Production logosu (SVG, koyu)"), ""),
-        ("kaotic-wordmark-cream.svg", "/assets/brand/kaotic-wordmark-cream.svg", t("Kaotic Production logo (SVG, light)", "Kaotic Production logosu (SVG, açık)"), " darkbg"),
-        ("kaotic-mark.svg", "/assets/brand/kaotic-mark.svg", t("Kaotic Production mark (SVG)", "Kaotic Production simgesi (SVG)"), ""),
+        ("kaotic-logo-dark-bg.svg", "/assets/brand/kaotic-logo-dark-bg.svg", t("Kaotic Production logo, for dark backgrounds (SVG)", "Kaotic Production logosu, koyu zemin için (SVG)"), " darkbg"),
+        ("kaotic-logo-light-bg.svg", "/assets/brand/kaotic-logo-light-bg.svg", t("Kaotic Production logo, for light backgrounds (SVG)", "Kaotic Production logosu, açık zemin için (SVG)"), ""),
+        ("kaotic-emblem.svg", "/assets/brand/kaotic-emblem.svg", t("Kaotic Production emblem (SVG; PNG up to 2048 px in the ZIP)", "Kaotic Production amblemi (SVG; 2048 px'e kadar PNG'ler ZIP'te)"), " darkbg"),
+        ("kaotic-logo-white.svg", "/assets/brand/kaotic-logo-white.svg", t("Logo, white (SVG)", "Logo, beyaz (SVG)"), " darkbg"),
+        ("kaotic-logo-black.svg", "/assets/brand/kaotic-logo-black.svg", t("Logo, black (SVG)", "Logo, siyah (SVG)"), ""),
+        ("kaotic-favicon.svg", "/assets/brand/kaotic-favicon.svg", t("App icon / favicon (SVG)", "Uygulama simgesi / favicon (SVG)"), ""),
     ]
     logo_html = "".join(f'<li class="logo-tile{c}"><a href="{files}{f}" download><img src="{prev}" alt="" loading="lazy">{label}</a></li>' for f, prev, label, c in logos)
     art = [("reverdo-keyart-3840x1240.jpg", "keyart", t("Key art, no text (3840×1240)", "Ana görsel, yazısız (3840×1240)")),
@@ -999,6 +1013,11 @@ def main():
     write("/robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {C.SITE_URL}/sitemap.xml\n")
     write("/CNAME", "kaoticproduction.com\n")
     write("/.nojekyll", "")
+    write("/site.webmanifest", json.dumps({
+        "name": "Kaotic Production", "short_name": "Kaotic", "start_url": "/", "display": "browser",
+        "background_color": "#0d1016", "theme_color": "#0d1016",
+        "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"},
+                  {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, indent=1) + "\n")
     print("built")
 
 

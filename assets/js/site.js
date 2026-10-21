@@ -62,9 +62,8 @@
     var load = function () {
       if (video.dataset.loaded) return;
       video.dataset.loaded = "1";
-      // the clip covers the hero: on a tall phone screen it is scaled by height
-      var need = Math.max(window.innerWidth, window.innerHeight * 16 / 9) * Math.min(window.devicePixelRatio || 1, 2);
-      var small = need < 1100;
+      // 1080p on wide screens (>= 1200 css px), 720p on phones and tablets
+      var small = window.innerWidth < 1200;
       var base = small ? video.dataset.small : video.dataset.large;
       [["webm", "video/webm"], ["mp4", "video/mp4"]].forEach(function (t) {
         var s = doc.createElement("source");
