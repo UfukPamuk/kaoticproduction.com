@@ -21,7 +21,7 @@ import config as C  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG = os.path.join(ROOT, "assets", "img")
 LEGAL = os.path.join(ROOT, "tools", "legal")
-VERSION = "20261021"   # cache-buster for css/js
+VERSION = "20261021b"   # cache-buster for css/js
 YEAR = "2026"
 
 PAGES = {

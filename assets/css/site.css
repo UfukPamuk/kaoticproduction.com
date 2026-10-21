@@ -592,7 +592,7 @@ body.studio .lang, body.studio .menu-btn { border-color: #333b4c; }
   .k-copy { padding-top: 52vw; }
 }
 @media (min-width: 1100px) {
-  .k-copy { padding-top: min(36.5vw, 64vh); align-self: start; padding-bottom: clamp(40px, 3.5vw, 90px); }
+  .k-copy { padding-top: min(40vw, 70vh); align-self: start; padding-bottom: clamp(40px, 3.5vw, 90px); }
   .k-copy > * { margin-left: 50%; }
   .k-copy h1 { font-size: clamp(2rem, 2.3vw + .5rem, 4.2rem); max-width: 16ch; margin-bottom: .3em; }
   .k-copy .lead { font-size: clamp(1rem, .45vw + .8rem, 1.35rem); max-width: 36em; }
