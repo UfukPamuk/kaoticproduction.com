@@ -21,7 +21,7 @@ import config as C  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG = os.path.join(ROOT, "assets", "img")
 LEGAL = os.path.join(ROOT, "tools", "legal")
-VERSION = "20261021b"   # cache-buster for css/js
+VERSION = "20261021c"   # cache-buster for css/js
 YEAR = "2026"
 
 PAGES = {
@@ -813,7 +813,7 @@ def presskit(lang):
     yt = C.YOUTUBE_ID_EN
     video = (f'<p><a href="https://www.youtube.com/watch?v={E(yt)}" rel="noopener">{t("Reverdo trailer on YouTube", "YouTube’da Reverdo fragmanı")}</a></p>' if yt
              else f'<p>{t("Trailer (about 1 minute, English and Turkish): coming soon on YouTube. Need it earlier? Write to us and we will send a download link.", "Fragman (yaklaşık 1 dakika, İngilizce ve Türkçe): yakında YouTube’da. Daha önce mi lazım? Bize yazın, indirme bağlantısı gönderelim.")}</p>')
-    video += f'<p><a href="/assets/video/reverdo-hero-720.mp4" download="reverdo-gameplay-loop-720p.mp4">{t("Short gameplay loop (11 s, silent, 720p MP4)", "Kısa oynanış döngüsü (11 sn, sessiz, 720p MP4)")}</a></p>'
+    video += f'<p><a href="/assets/video/reverdo-hero-720.mp4" download="reverdo-gameplay-loop-720p.mp4">{t("Short gameplay loop (10 s, silent, 720p MP4)", "Kısa oynanış döngüsü (10 sn, sessiz, 720p MP4)")}</a></p>'
 
     body = f"""
 <div class="wrap pk-head">
