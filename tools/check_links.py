@@ -39,7 +39,7 @@ class P(HTMLParser):
             if a.get(k):
                 for part in a[k].split(","):
                     self.refs.append((tag, k, part.strip().split(" ")[0]))
-        for k in ("data-large", "data-small"):
+        for k in ("data-xl", "data-large", "data-small"):
             if a.get(k):
                 for ext in ("mp4", "webm"):
                     self.refs.append((tag, k, a[k] + "." + ext))

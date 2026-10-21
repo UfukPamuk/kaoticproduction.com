@@ -543,7 +543,7 @@ def reverdo(lang):
 <section class="g-hero" aria-labelledby="hero-h">
 <div class="media">
 {pic("hero-poster", "", "100vw", lazy=False, high=True)}
-<video data-hero muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-large="/assets/video/reverdo-hero-1080" data-small="/assets/video/reverdo-hero-720" poster="/assets/img/hero-poster-1920.jpg"></video>
+<video data-hero muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-xl="/assets/video/reverdo-hero-1440" data-large="/assets/video/reverdo-hero-1080" data-small="/assets/video/reverdo-hero-720" poster="/assets/img/hero-poster-1920.jpg"></video>
 </div>
 <div class="wrap inner">
 {pic("reverdo-wordmark", "Reverdo", "(min-width: 900px) 560px, 92vw", cls="logo", lazy=False)}

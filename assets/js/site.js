@@ -62,9 +62,11 @@
     var load = function () {
       if (video.dataset.loaded) return;
       video.dataset.loaded = "1";
-      // 1080p on wide screens (>= 1200 css px), 720p on phones and tablets
-      var small = window.innerWidth < 1200;
-      var base = small ? video.dataset.small : video.dataset.large;
+      // 1440p when the screen has >= 2200 device pixels across, 1080p from
+      // 1200 css px, 720p on phones and tablets
+      var px = window.innerWidth * (window.devicePixelRatio || 1);
+      var base = window.innerWidth < 1200 ? video.dataset.small
+        : (px >= 2200 && video.dataset.xl ? video.dataset.xl : video.dataset.large);
       [["webm", "video/webm"], ["mp4", "video/mp4"]].forEach(function (t) {
         var s = doc.createElement("source");
         s.src = base + "." + t[0];
