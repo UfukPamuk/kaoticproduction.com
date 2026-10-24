@@ -21,8 +21,8 @@ GOOGLE_PLAY_URL = ""    # e.g. "https://play.google.com/store/apps/details?id=co
 
 # YouTube video id of the full trailer (the part after "watch?v=").
 # "" shows the poster with "Trailer coming soon on YouTube".
-YOUTUBE_ID_EN = ""
-YOUTUBE_ID_TR = ""      # Turkish trailer; falls back to the English one if ""
+YOUTUBE_ID_EN = "QZI_pq7fEjc"
+YOUTUBE_ID_TR = "VDeJZjBKnSk"      # Turkish trailer; falls back to the English one if ""
 
 STEAM_PRICE = "6,99 USD"          # shown as-is (TR uses the same string)
 STEAM_PRICE_EN = "US$6.99"

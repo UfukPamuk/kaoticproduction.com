@@ -764,7 +764,7 @@ def reverdo(lang):
         game_ld["trailer"] = {"@type": "VideoObject", "name": "Reverdo trailer",
                               "embedUrl": "https://www.youtube-nocookie.com/embed/" + C.YOUTUBE_ID_EN,
                               "thumbnailUrl": C.SITE_URL + src("trailer-poster-en", 1920, "jpg"),
-                              "description": "Reverdo trailer", "uploadDate": "2026-10-21"}
+                              "description": "Reverdo trailer", "uploadDate": "2026-10-24"}
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": re.sub("<[^>]+>", "", q),
          "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", a)).strip()}}
@@ -984,7 +984,7 @@ def sitemap():
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for key, ls in PAGES.items():
         for lang in ("en", "tr"):
-            out.append(f"<url><loc>{C.SITE_URL}{ls[lang]}</loc><lastmod>2026-10-21</lastmod>"
+            out.append(f"<url><loc>{C.SITE_URL}{ls[lang]}</loc><lastmod>2026-10-24</lastmod>"
                        f'<xhtml:link rel="alternate" hreflang="en" href="{C.SITE_URL}{ls["en"]}"/>'
                        f'<xhtml:link rel="alternate" hreflang="tr" href="{C.SITE_URL}{ls["tr"]}"/>'
                        f'<xhtml:link rel="alternate" hreflang="x-default" href="{C.SITE_URL}{ls["en"]}"/></url>')
