@@ -764,7 +764,7 @@ def reverdo(lang):
         game_ld["trailer"] = {"@type": "VideoObject", "name": "Reverdo trailer",
                               "embedUrl": "https://www.youtube-nocookie.com/embed/" + C.YOUTUBE_ID_EN,
                               "thumbnailUrl": C.SITE_URL + src("trailer-poster-en", 1920, "jpg"),
-                              "description": "Reverdo trailer", "uploadDate": "2026-10-24"}
+                              "description": "Reverdo trailer", "uploadDate": "2026-11-15"}
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": re.sub("<[^>]+>", "", q),
          "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", a)).strip()}}
