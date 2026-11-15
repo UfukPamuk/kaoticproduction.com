@@ -172,11 +172,16 @@ MAPS = [
     ("Funfair", "Lunapark"), ("Train Station", "Tren İstasyonu"), ("Concert Ground", "Konser Alanı"),
     ("Forest Pond", "Orman Göleti"), ("Car Scrapyard", "Araba Hurdalığı"), ("Campsite", "Kamp Alanı"),
     ("City Street", "Şehir Sokağı"), ("Campus", "Kampüs"), ("Underwater Habitat", "Sualtı Habitatı"),
-    ("Blocked Dam", "Tıkanmış Baraj"), ("Toxic Swamp", "Zehirli Bataklık"), ("Ancient Mine", "Antik Maden Mağarası"),
+    ("Blocked Dam", "Tıkanmış Baraj"), ("Toxic Swamp", "Zehirli Bataklık"), ("Forest Fire", "Orman Yangını"),
+    ("Sinekli Reed Marsh", "Sinekli Sazlık"), ("Ancient Mine", "Antik Maden Mağarası"),
     ("Seaside Promenade", "Deniz Kordonu"),
 ]
-LANDMARKS = [("Sultanahmet Square", "Sultanahmet Meydanı"), ("Eiffel Tower", "Eyfel Kulesi"),
-             ("Pyramids of Giza", "Giza Piramitleri"), ("Taj Mahal", "Tac Mahal")]
+LANDMARKS = [("Taksim Square", "Taksim Meydanı"), ("Fairy Chimneys of Cappadocia", "Kapadokya'nın Peri Bacaları"),
+             ("Sultanahmet Square", "Sultanahmet Meydanı"), ("Ancient City of Ephesus", "Efes Antik Kenti"),
+             ("Eiffel Tower", "Eyfel Kulesi"), ("Amsterdam", "Amsterdam"), ("Venice", "Venedik"),
+             ("Colosseum", "Kolezyum"), ("Pyramids of Giza", "Giza Piramitleri"), ("Casablanca", "Kazablanka"),
+             ("Taj Mahal", "Tac Mahal"), ("Statue of Liberty", "Özgürlük Anıtı")]
+assert len(MAPS) + len(LANDMARKS) == 30
 LANGS = {
     "en": "English, Turkish, German, Spanish, French, Portuguese, Russian, Japanese, Chinese, Hindi and Arabic",
     "tr": "Türkçe, İngilizce, Almanca, İspanyolca, Fransızca, Portekizce, Rusça, Japonca, Çince, Hintçe ve Arapça",
@@ -389,8 +394,8 @@ def home(lang):
 <div class="body">
 <h2 id="games-h" class="visually-hidden">Reverdo</h2>
 {pic("reverdo-wordmark", "Reverdo", "(min-width: 900px) 420px, 82vw", cls="logo")}
-<p>{t("Clean up grey, littered places and watch every corner turn green again! 20 maps from a beach to Istanbul's Sultanahmet, the Eiffel Tower and the Taj Mahal, with machines, storms and maps that come alive.",
-      "Gri ve çöplerle dolu yerleri temizle, her köşenin yeniden yeşerdiğini izle! Sahilden Sultanahmet'e, Eyfel Kulesi'nden Tac Mahal'e 20 harita, iş makineleri, fırtınalar ve canlanan haritalar.")}</p>
+<p>{t("Clean up grey, littered places and watch every corner turn green again! 30 maps from a beach to Istanbul's Sultanahmet, the Eiffel Tower, the Taj Mahal and the Statue of Liberty, with machines, storms and maps that come alive.",
+      "Gri ve çöplerle dolu yerleri temizle, her köşenin yeniden yeşerdiğini izle! Sahilden Sultanahmet'e, Eyfel Kulesi'nden Tac Mahal'e ve Özgürlük Anıtı'na 30 harita, iş makineleri, fırtınalar ve canlanan haritalar.")}</p>
 <div class="meta"><span class="chip sun">{rel[0]}</span><span class="chip">PC (Steam)</span><span class="chip">iPhone &amp; iPad</span><span class="chip">Android</span></div>
 <div class="actions"><a class="btn" href="{PAGES["reverdo"][lang]}">{t("Explore the game", "Oyunu keşfet")}</a><a class="btn ghost" href="{PAGES["presskit"][lang]}">{t("Press kit", "Basın kiti")}</a></div>
 </div>
@@ -548,8 +553,8 @@ def reverdo(lang):
 <div class="wrap inner">
 {pic("reverdo-wordmark", "Reverdo", "(min-width: 900px) 560px, 92vw", cls="logo", lazy=False)}
 <h1 id="hero-h">{t("Clean it up, watch it bloom.", "Temizle, yeniden yeşert.")}</h1>
-<p class="sub">{t("Clean up grey, littered places and watch every corner turn green again! 20 maps from a beach to Istanbul's Sultanahmet, the Eiffel Tower and the Taj Mahal. A calm, colourful cleanup game for all ages.",
-                  "Gri ve çöplerle dolu yerleri temizle, her köşenin yeniden yeşerdiğini izle! Sahilden Sultanahmet'e, Eyfel Kulesi'nden Tac Mahal'e 20 harita. Sakin, renkli ve her yaşa uygun bir temizlik oyunu.")}</p>
+<p class="sub">{t("Clean up grey, littered places and watch every corner turn green again! 30 maps from a beach to Istanbul's Sultanahmet, the Eiffel Tower, the Taj Mahal and the Statue of Liberty. A calm, colourful cleanup game for all ages.",
+                  "Gri ve çöplerle dolu yerleri temizle, her köşenin yeniden yeşerdiğini izle! Sahilden Sultanahmet'e, Eyfel Kulesi'nden Tac Mahal'e ve Özgürlük Anıtı'na 30 harita. Sakin, renkli ve her yaşa uygun bir temizlik oyunu.")}</p>
 <div class="when"><span class="chip sun">{rel[0]}</span><span class="chip">{rel[1]}</span></div>
 {stores(lang)}
 </div>
@@ -557,7 +562,7 @@ def reverdo(lang):
 </section>
 
 <div class="ribbon"><div class="wrap"><ul>
-<li>{icon("map")} {t("20 maps", "20 harita")}</li><li>{icon("users")} {t("Play as Ada or Ege", "Ada ya da Ege ile oyna")}</li>
+<li>{icon("map")} {t("30 maps", "30 harita")}</li><li>{icon("users")} {t("Play as Ada or Ege", "Ada ya da Ege ile oyna")}</li>
 <li>{icon("lang")} {t("11 languages", "11 dil")}</li><li>{icon("heart")} {t("For all ages", "Her yaşa uygun")}</li><li>{icon("offline")} {t("Plays offline", "İnternetsiz oynanır")}</li>
 </ul></div></div>
 
@@ -587,16 +592,16 @@ def reverdo(lang):
 <div class="row flip" id="maps">
 <div class="text">
 <p class="eyebrow">{t("World tour", "Dünya turu")}</p>
-<h2>{t("20 maps, from the beach to the pyramids", "20 harita: sahilden piramitlere")}</h2>
-<p>{t("Start on a grey beach, then clean a funfair, a train station, a forest pond, an underwater habitat and an ancient mine, all the way to world landmarks: Istanbul's Sultanahmet Square, the Eiffel Tower, the Pyramids of Giza and the Taj Mahal. Every map has its own music, ambience, people and little stories.",
-      "Gri bir sahilden başla; lunaparkı, tren istasyonunu, orman göletini, sualtı habitatını ve antik madeni temizle, dünyanın simge yerlerine kadar git: Sultanahmet Meydanı, Eyfel Kulesi, Giza Piramitleri ve Tac Mahal. Her haritanın kendi müziği, ortam sesleri, insanları ve küçük hikâyeleri var.")}</p>
-<ul class="tags" aria-label="{t("All 20 maps", "20 haritanın hepsi")}">{maps_tags}</ul>
+<h2>{t("30 maps, from the beach to the Statue of Liberty", "30 harita: sahilden Özgürlük Anıtı'na")}</h2>
+<p>{t("Start on a grey beach, then clean a funfair, a train station, a forest pond, an underwater habitat and an ancient mine, all the way to world landmarks: Istanbul's Sultanahmet Square, the Eiffel Tower, the Colosseum, the Pyramids of Giza, the Taj Mahal and the Statue of Liberty. Every map has its own music, ambience, people and little stories.",
+      "Gri bir sahilden başla; lunaparkı, tren istasyonunu, orman göletini, sualtı habitatını ve antik madeni temizle, dünyanın simge yerlerine kadar git: Sultanahmet Meydanı, Eyfel Kulesi, Kolezyum, Giza Piramitleri, Tac Mahal ve Özgürlük Anıtı. Her haritanın kendi müziği, ortam sesleri, insanları ve küçük hikâyeleri var.")}</p>
+<ul class="tags" aria-label="{t("All 30 maps", "30 haritanın hepsi")}">{maps_tags}</ul>
 </div>
 <div class="mosaic">
-<figure>{pic("still-sultanahmet-park", STILL_ALT["sultanahmet-park"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{LANDMARKS[0][tr]}</figcaption></figure>
-<figure>{pic("shot-10-eiffel-tower", SHOT_ALT["10-eiffel-tower"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{LANDMARKS[1][tr]}</figcaption></figure>
-<figure>{pic("shot-07-giza", SHOT_ALT["07-giza"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{LANDMARKS[2][tr]}</figcaption></figure>
-<figure>{pic("shot-05-taj-mahal", SHOT_ALT["05-taj-mahal"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{LANDMARKS[3][tr]}</figcaption></figure>
+<figure>{pic("still-sultanahmet-park", STILL_ALT["sultanahmet-park"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{("Sultanahmet Square", "Sultanahmet Meydanı")[tr]}</figcaption></figure>
+<figure>{pic("shot-10-eiffel-tower", SHOT_ALT["10-eiffel-tower"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{("Eiffel Tower", "Eyfel Kulesi")[tr]}</figcaption></figure>
+<figure>{pic("shot-07-giza", SHOT_ALT["07-giza"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{("Pyramids of Giza", "Giza Piramitleri")[tr]}</figcaption></figure>
+<figure>{pic("shot-05-taj-mahal", SHOT_ALT["05-taj-mahal"][tr], "(min-width: 900px) 320px, 46vw", maxw=1280)}<figcaption>{("Taj Mahal", "Tac Mahal")[tr]}</figcaption></figure>
 </div>
 </div>
 
@@ -745,8 +750,8 @@ def reverdo(lang):
         "name": "Reverdo",
         "alternateName": "Reverdo: Clean & Green" if not tr else "Reverdo: Dünyayı Yeşert",
         "url": C.SITE_URL + p["reverdo"][lang],
-        "description": t("A calm, colourful cleanup game for all ages: clean up grey, littered places and watch every corner turn green again across 20 maps.",
-                         "Her yaşa uygun, sakin ve renkli bir temizlik oyunu: gri ve çöplerle dolu yerleri temizle, 20 haritada her köşenin yeniden yeşerdiğini izle."),
+        "description": t("A calm, colourful cleanup game for all ages: clean up grey, littered places and watch every corner turn green again across 30 maps.",
+                         "Her yaşa uygun, sakin ve renkli bir temizlik oyunu: gri ve çöplerle dolu yerleri temizle, 30 haritada her köşenin yeniden yeşerdiğini izle."),
         "image": [C.SITE_URL + "/assets/img/og-reverdo.jpg", C.SITE_URL + src("shot-01-before-after-coast", 1920, "jpg")],
         "screenshot": [C.SITE_URL + src("shot-" + s, 1920, "jpg") for s in ["01-before-after-coast", "02-paris-ada", "05-taj-mahal", "07-giza"]],
         "genre": ["Casual", "Simulation", "Cleaning"],
@@ -770,8 +775,8 @@ def reverdo(lang):
          "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub("<[^>]+>", " ", a)).strip()}}
         for q, a in faq_items(lang) if "table" not in a]}
     title = t("Reverdo · Clean it up, watch it bloom", "Reverdo · Temizle, yeniden yeşert")
-    desc = t("Clean up grey, littered places and watch every corner turn green again! 20 maps from a beach to Sultanahmet, the Eiffel Tower and the Taj Mahal. Coming January 2027 to Steam, iOS and Android.",
-             "Gri ve çöplerle dolu yerleri temizle, her köşenin yeniden yeşerdiğini izle! Sahilden Sultanahmet'e, Eyfel'den Tac Mahal'e 20 harita. Ocak 2027'de Steam, iOS ve Android'de.")
+    desc = t("Clean up grey, littered places and watch every corner turn green again! 30 maps from a beach to Sultanahmet, the Eiffel Tower, the Taj Mahal and the Statue of Liberty. Coming January 2027 to Steam, iOS and Android.",
+             "Gri ve çöplerle dolu yerleri temizle, her köşenin yeniden yeşerdiğini izle! Sahilden Sultanahmet'e, Eyfel'den Tac Mahal'e ve Özgürlük Anıtı'na 30 harita. Ocak 2027'de Steam, iOS ve Android'de.")
     return page(lang, "reverdo", "game", title, desc, "/assets/img/og-reverdo.jpg", body, overlay=True,
                 jsonld=[game_ld, faq_ld], extra_body=lightbox)
 
@@ -849,8 +854,8 @@ def presskit(lang):
 <section id="description"><h2>{t("Description", "Tanıtım")}</h2>
 <p>{t("<strong>Reverdo</strong> is a calm, colourful cleanup game where you collect and recycle litter to make the world green again.",
       "<strong>Reverdo</strong>, çöpleri toplayıp geri dönüştürerek dünyayı yeniden yeşerttiğin sakin, renkli ve keyifli bir temizlik oyunu.")}</p>
-<p>{t("A grey beach buried in litter… Grab your vacuum and start cleaning! Every corner you clear comes back to life: grass grows, flowers bloom, birds return and people come back to the park. When a map is 100% clean, a short before/after film shows how far it has come. From a beach to Istanbul's Sultanahmet Square, the Eiffel Tower, the Pyramids of Giza and the Taj Mahal, players clean 20 maps with their own music, people and little stories.",
-      "Gri ve çöplerle dolu bir sahil… Süpürgeni al ve temizlemeye başla! Temizlediğin her köşe yeniden canlanıyor: çimen çıkıyor, çiçekler açıyor, kuşlar geri geliyor, insanlar parka dönüyor. Harita %100 temiz olunca kısa bir önce/sonra filmi ne kadar değiştiğini gösteriyor. Sahilden Sultanahmet Meydanı'na, Eyfel Kulesi'nden Giza Piramitleri'ne ve Tac Mahal'e kadar, her birinin kendi müziği, insanları ve küçük hikâyeleri olan 20 harita temizleniyor.")}</p>
+<p>{t("A grey beach buried in litter… Grab your vacuum and start cleaning! Every corner you clear comes back to life: grass grows, flowers bloom, birds return and people come back to the park. When a map is 100% clean, a short before/after film shows how far it has come. From a beach to Istanbul's Sultanahmet Square, the Eiffel Tower, the Pyramids of Giza, the Taj Mahal and the Statue of Liberty, players clean 30 maps with their own music, people and little stories.",
+      "Gri ve çöplerle dolu bir sahil… Süpürgeni al ve temizlemeye başla! Temizlediğin her köşe yeniden canlanıyor: çimen çıkıyor, çiçekler açıyor, kuşlar geri geliyor, insanlar parka dönüyor. Harita %100 temiz olunca kısa bir önce/sonra filmi ne kadar değiştiğini gösteriyor. Sahilden Sultanahmet Meydanı'na, Eyfel Kulesi'nden Giza Piramitleri'ne, Tac Mahal'e ve Özgürlük Anıtı'na kadar, her birinin kendi müziği, insanları ve küçük hikâyeleri olan 30 harita temizleniyor.")}</p>
 </section>
 
 <section id="history"><h2>{t("History", "Hikâyesi")}</h2>
@@ -861,7 +866,7 @@ def presskit(lang):
 <section id="features"><h2>{t("Features", "Özellikler")}</h2>
 <ul class="ticks">
 <li>{t("Clean up litter and watch grey places turn green, with a before/after film at the end of every map", "Çöpleri topla, gri yerlerin yeşermesini izle; her haritanın sonunda önce/sonra filmi")}</li>
-<li>{t("20 maps, including Sultanahmet Square, the Eiffel Tower, the Pyramids of Giza and the Taj Mahal", "Sultanahmet Meydanı, Eyfel Kulesi, Giza Piramitleri ve Tac Mahal dahil 20 harita")}</li>
+<li>{t("30 maps, including Sultanahmet Square, the Eiffel Tower, the Colosseum, the Pyramids of Giza, the Taj Mahal and the Statue of Liberty", "Sultanahmet Meydanı, Eyfel Kulesi, Kolezyum, Giza Piramitleri, Tac Mahal ve Özgürlük Anıtı dahil 30 harita")}</li>
 <li>{t("Play as Ada or Ege, with hats, outfits, colourful vacuums and trails", "Şapkalar, kıyafetler, renkli süpürgeler ve izlerle Ada ya da Ege olarak oyna")}</li>
 <li>{t("Machines that level up: octopus-grab excavator, Clean-Bot, push scrubber, sponge mop, sea-cleaning boat, cleanup submarine and metal detector", "Seviye atlayan makineler: ahtapot kepçe, Clean-Bot, itmeli süpürge, süngerli paspas, deniz temizleme teknesi, temizlik denizaltısı ve metal dedektörü")}</li>
 <li>{t("Living maps: tour boats, ice-cream vans, crises, rain, the lodos wind and desert sandstorms", "Canlı haritalar: tur tekneleri, dondurma arabaları, krizler, sağanak, lodos ve kum fırtınası")}</li>
